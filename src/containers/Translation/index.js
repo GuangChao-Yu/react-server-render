@@ -1,6 +1,7 @@
-import React, {PureComponent} from 'react'
+import React, {PureComponent, Fragment} from 'react'
 import {connect} from 'react-redux'
 import {getTranslationList} from './store/actions'
+import {Helmet} from 'react-helmet'
 import {Redirect} from 'react-router-dom'
 import style from './style.css'
 import withStyle from '../../withStyle'
@@ -14,7 +15,13 @@ class Translation extends PureComponent {
 
   render() {
     return this.props.login ? (
-      <div className={style.container}>{this.getList()}</div>
+      <Fragment>
+        <Helmet>
+          <title>Yugc的ssr的翻译页-xxxxx</title>
+          <meta name="description" content="Yugc的ssr的翻译页-xxxxx" />
+        </Helmet>
+        <div className={style.container}>{this.getList()}</div>
+      </Fragment>
     ) : (
       <Redirect to="/" />
     )

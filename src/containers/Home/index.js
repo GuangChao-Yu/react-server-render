@@ -1,5 +1,6 @@
-import React, {Component} from 'react'
+import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux'
+import {Helmet} from 'react-helmet'
 import {getHomeList} from './store/actions'
 
 import style from './style.css'
@@ -15,7 +16,17 @@ class Home extends Component {
   getMapList() {
     const {list} = this.props
     return list.map(item => {
-      return <div className={style.item} key={item.id}>{item.title}</div>
+      return (
+        <Fragment>
+          <Helmet>
+            <title>My Title</title>
+            <meta name="description" content="Helmet application" />
+          </Helmet>
+          <div className={style.item} key={item.id}>
+            {item.title}
+          </div>
+        </Fragment>
+      )
     })
   }
 
